@@ -1,9 +1,16 @@
+import { useNavigate } from "react-router-dom";
 import { Post, PostsContainer } from "./styles";
 
 export function PostsList() {
+  const navigate = useNavigate();
+
+  function handleOnClick() {
+    navigate("/post");
+  }
+
   return (
     <PostsContainer>
-      <Post>
+      <Post onClick={handleOnClick}>
         <div>
           <h2>JavaScript data types and data structures</h2>
           <span>Há 1 dia</span>
@@ -17,7 +24,7 @@ export function PostsList() {
           drawn.
         </p>
       </Post>
-      <Post>
+      <Post onClick={handleOnClick}>
         <div>
           <h2>JavaScript data types and data structures</h2>
           <span>Há 1 dia</span>

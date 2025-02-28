@@ -5,7 +5,7 @@ import {
   ProfilePhoto,
   ProfileTitle,
 } from "./styles";
-import Avatar from "../../../assets/avatar.png";
+import Avatar from "../../../../assets/avatar.png";
 import {
   ArrowSquareOut,
   Building,

@@ -11,14 +11,20 @@ export const PostsContainer = styled.div`
 
 export const Post = styled.div`
   background-color: ${(props) => props.theme["base-post"]};
+  border: 1px solid transparent;
   border-radius: 10px;
   padding: 2rem;
+  cursor: pointer;
 
   @media screen and (max-width: 1311px) {
     max-width: 70rem;
   }
   @media screen and (min-width: 1312px) {
     max-width: 34rem;
+  }
+
+  &:hover {
+    border-color: ${(props) => props.theme["base-label"]};
   }
 
   div {
