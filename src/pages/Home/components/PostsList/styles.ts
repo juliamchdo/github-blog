@@ -47,6 +47,9 @@ export const Post = styled.div`
   }
 
   p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     font-size: 1rem;
   }
 `;

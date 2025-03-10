@@ -5,7 +5,6 @@ import {
   ProfilePhoto,
   ProfileTitle,
 } from "./styles";
-import Avatar from "../../../../assets/avatar.png";
 import {
   ArrowSquareOut,
   Building,
@@ -13,38 +12,60 @@ import {
   Users,
 } from "@phosphor-icons/react";
 import { NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { api } from "../../../../lib/axios";
+
+interface User {
+  name: string;
+  avatar_url: string;
+  bio: string;
+  company: string;
+  html_url: string;
+  followers: number;
+}
 
 export function Profile() {
+  const USER_NAME = "juliamchdo";
+  const [user, setUser] = useState<User>();
+
+  useEffect(() => {
+    getUserData();
+  }, []);
+
+  async function getUserData() {
+    await api.get(`users/${USER_NAME}`).then((res) => {
+      setUser(res.data);
+    });
+  }
+
   return (
     <ProfileContainer>
       <div>
-        <ProfilePhoto src={Avatar} />
+        <ProfilePhoto src={user?.avatar_url} />
         <ProfileInfo>
           <ProfileTitle>
-            <h1>Cameron Williamson</h1>
-            <NavLink to="/">
+            <h1>{user?.name}</h1>
+            <NavLink to={user?.html_url ?? "/"}>
               Github
               <ArrowSquareOut size={18} weight="bold" />
             </NavLink>
           </ProfileTitle>
-          <p>
-            Tristique volutpat pulvinar vel massa, pellentesque egestas. Eu
-            viverra massa quam dignissim aenean malesuada suscipit. Nunc,
-            volutpat pulvinar vel mass.
-          </p>
+          <p>{user?.bio}</p>
 
           <ProfileLinks>
             <span>
               <GithubLogo weight="fill" size={22} />
               Github
             </span>
-            <span>
-              <Building weight="fill" size={22} />
-              Rocketseat
-            </span>
+            {user?.company && (
+              <span>
+                <Building weight="fill" size={22} />
+                {user?.company}
+              </span>
+            )}
             <span>
               <Users weight="fill" size={22} />
-              110 seguidores
+              {user?.followers} seguidores
             </span>
           </ProfileLinks>
         </ProfileInfo>

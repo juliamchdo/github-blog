@@ -1,4 +1,4 @@
-import { PostsList } from "./components/PostsList/indext";
+import { PostsList } from "./components/PostsList";
 import { Profile } from "./components/Profile";
 import { SearchForm } from "./components/SearchForm";
 import { HomeContainer } from "./styles";
